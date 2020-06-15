@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'LocalSC_In_SC_Core_Repo'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'python-azure'
+    cliProjectName: 'python-azure'
+    cliSources: '.'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner, 
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      sonar.organization=coucou
+
+- task: SonarQubeAnalyze@4
