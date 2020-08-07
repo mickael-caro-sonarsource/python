@@ -26,6 +26,10 @@ def _clean_many(prefix):
 def clean_site_choices_cache(sender, **kwargs):
     _clean_many(get_cms_setting('SITE_CHOICES_CACHE_KEY'))
 
+    
+def clean_site_choices_cache_2(sender, **kwargs):
+    _clean_many(get_cms_setting('SITE_CHOICES_CACHE_KEY'))
 
+    
 def clean_page_choices_cache(sender, **kwargs):
     _clean_many(get_cms_setting('PAGE_CHOICES_CACHE_KEY'))
