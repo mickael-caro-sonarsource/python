@@ -11,5 +11,5 @@ def __add__(self):  # Noncompliant. Missing one parameter
 
 class SomeClass:
     lookUp = false
-    def lookup():       # Non-compliant; method name differs from field name only by capitalization
+    def plop():       # Non-compliant; method name differs from field name only by capitalization
         pass
