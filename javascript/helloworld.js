@@ -17,5 +17,3 @@ console.debug(JSON.stringify(originalJson.value[0].variables[ceTaskId]));
 var newVariables = JSON.stringify(originalJson.value[0].variables);
 console.debug(newVariables);
 ;;;;;;;
-
-;;;;;;;
