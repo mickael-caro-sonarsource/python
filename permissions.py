@@ -11,6 +11,8 @@ PERMISSION_KEYS = [
 ]
 
 
+
+
 def get_cache_key(user, key):
     username = getattr(user, get_user_model().USERNAME_FIELD)
     return "%s:permission:%s:%s" % (
@@ -68,3 +70,11 @@ def clear_permission_cache():
     else:
         cache.set(get_cache_permission_version_key(), 2,
                   get_cms_setting('CACHE_DURATIONS')['permissions'])
+
+class A:
+    def __mul__(self, other, unexpected):  # Noncompliant. Too many parameters
+        return 42
+    def __add__(self):  # Noncompliant. Missing one parameter
+        return 42
+A() * 3  # TypeError: __mul__() missing 1 required positional argument: 'unexpected'
+A() + 3  # TypeError: __add__() takes 1 positional argument but 2 were given
