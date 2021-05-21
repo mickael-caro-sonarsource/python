@@ -10,6 +10,12 @@ PERMISSION_KEYS = [
     'publish_page', 'view_page',
 ]
 
+PERMISSION_KEYS = [
+    'add_page', 'change_page', 'change_page_advanced_settings',
+    'change_page_permissions', 'delete_page', 'move_page',
+    'publish_page', 'view_page',
+]
+
 
 PERMISSION_KEYS_2 = [
     'add_page', 'change_page', 'change_page_advanced_settings',
