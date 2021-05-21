@@ -17,19 +17,6 @@ PERMISSION_KEYS_2 = [
     'publish_page', 'view_page',
 ]
 
-PERMISSION_KEYS = [
-    'add_page', 'change_page', 'change_page_advanced_settings',
-    'change_page_permissions', 'delete_page', 'move_page',
-    'publish_page', 'view_page',
-]
-
-
-PERMISSION_KEYS_2 = [
-    'add_page', 'change_page', 'change_page_advanced_settings',
-    'change_page_permissions', 'delete_page', 'move_page',
-    'publish_page', 'view_page',
-]
-
 def _site_cache_key(lang):
     return "%s-%s" %(get_cms_setting('SITE_CHOICES_CACHE_KEY'), lang)
 
