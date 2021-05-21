@@ -7,6 +7,8 @@ from cms.utils.conf import get_cms_setting
 def _site_cache_key(lang):
     return "%s-%s" %(get_cms_setting('SITE_CHOICES_CACHE_KEY'), lang)
 
+def _site_cache_key(lang):
+    return "%s-%s" %(get_cms_setting('SITE_CHOICES_CACHE_KEY'), lang)
 
 def _site_cache_key(lang):
     return "%s-%s" %(get_cms_setting('SITE_CHOICES_CACHE_KEY'), lang)
