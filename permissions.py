@@ -10,6 +10,12 @@ PERMISSION_KEYS = [
     'publish_page', 'view_page',
 ]
 
+def _site_cache_key(lang):
+    return "%s-%s" %(get_cms_setting('SITE_CHOICES_CACHE_KEY'), lang)
+
+
+def _page_cache_key(lang):
+    return "%s-%s" %(get_cms_setting('PAGE_CHOICES_CACHE_KEY'), lang)
 
 def get_cache_key(user, key):
     username = getattr(user, get_user_model().USERNAME_FIELD)
