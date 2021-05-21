@@ -11,22 +11,6 @@ def _site_cache_key(lang):
 def _site_cache_key(lang):
     return "%s-%s" %(get_cms_setting('SITE_CHOICES_CACHE_KEY'), lang)
 
-
-
-def _page_cache_key(lang):
-    return "%s-%s" %(get_cms_setting('PAGE_CHOICES_CACHE_KEY'), lang)
-
-
-def _clean_many(prefix):
-    from django.core.cache import cache
-    keys = []
-    if settings.USE_I18N:
-        for lang in [language[0] for language in settings.LANGUAGES]:
-            keys.append("%s-%s" %(prefix, lang))
-    else:
-        keys = ["%s-%s" %(prefix, settings.LANGUAGE_CODE)]
-    cache.delete_many(keys)
-
 def _clean_many(prefix):
     from django.core.cache import cache
     keys = []
