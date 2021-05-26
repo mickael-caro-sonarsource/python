@@ -21,6 +21,17 @@ def get_cache_permission_version():
         version = 1
     return int(version)
 
+def set_permission_cache(user, key, value):
+    """
+    Helper method for storing values in cache. Stores used keys so
+    all of them can be cleaned when clean_permission_cache gets called.
+    """
+    from django.core.cache import cache
+    # store this key, so we can clean it when required
+    cache_key = get_cache_key(user, key)
+    cache.set(cache_key, value,
+              get_cms_setting('CACHE_DURATIONS')['permissions'],
+              version=get_cache_permission_version())
 
 def get_cache_permission_version():
     from django.core.cache import cache
