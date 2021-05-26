@@ -17,6 +17,12 @@ PERMISSION_KEYS = [
 ]
 
 
+PERMISSION_KEYS = [
+    'add_page', 'change_page', 'change_page_advanced_settings',
+    'change_page_permissions', 'delete_page', 'move_page',
+    'publish_page', 'view_page',
+]
+
 def get_cache_key(user, key):
     username = getattr(user, get_user_model().USERNAME_FIELD)
     return "%s:permission:%s:%s" % (
