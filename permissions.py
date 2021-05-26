@@ -31,6 +31,14 @@ PERMISSION_KEYS_2 = [
     'publish_page', 'view_page',
 ]
 
+def get_cache_permission_version():
+    from django.core.cache import cache
+    try:
+        version = int(cache.get(get_cache_permission_version_key()))
+    except Exception:
+        version = 1
+    return int(version)
+
 def get_cache_key(user, key):
     username = getattr(user, get_user_model().USERNAME_FIELD)
     return "%s:permission:%s:%s" % (
