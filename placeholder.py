@@ -149,6 +149,12 @@ def set_placeholder_cache(placeholder, lang, site_id, content, request):
       get_cms_setting('CACHE_DURATIONS')['content'],
       placeholder.get_cache_expiration(request, now())
     )
+    duration = min(
+      get_cms_setting('CACHE_DURATIONS')['content'],
+      placeholder.get_cache_expiration(request, now())
+    )
+    cache.set(key, content, duration)
+    cache.set(key, content, duration)
     cache.set(key, content, duration)
     # "touch" the cache-version, so that it stays as fresh as this content.
     version, vary_on_list = _get_placeholder_cache_version(placeholder, lang, site_id)
