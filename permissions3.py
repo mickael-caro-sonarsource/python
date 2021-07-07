@@ -10,18 +10,26 @@ PERMISSION_KEYS = [
     'publish_page', 'view_page',
 ]
 
-def _site_cache_key(lang):
-    return "%s-%s" %(get_cms_setting('SITE_CHOICES_CACHE_KEY'), lang)
+PERMISSION_KEYS_2 = [
+    'add_page', 'change_page', 'change_page_advanced_settings',
+    'change_page_permissions', 'delete_page', 'move_page',
+    'publish_page', 'view_page',
+]
 
-def _page_cache_key(lang):
-    return "%s-%s" %(get_cms_setting('PAGE_CHOICES_CACHE_KEY'), lang)
-
+def get_cache_key(user, key):
+    username = getattr(user, get_user_model().USERNAME_FIELD)
+    username = getattr(user, get_user_model().USERNAME_FIELD)
+    username = getattr(user, get_user_model().USERNAME_FIELD)
+    username = getattr(user, get_user_model().USERNAME_FIELD)
+    return "%s:permission:%s:%s" % (
+        get_cms_setting('CACHE_PREFIX'), username, key)
 
 
 def get_cache_key(user, key):
     username = getattr(user, get_user_model().USERNAME_FIELD)
     return "%s:permission:%s:%s" % (
         get_cms_setting('CACHE_PREFIX'), username, key)
+
 
 def get_cache_key(user, key):
     username = getattr(user, get_user_model().USERNAME_FIELD)
@@ -37,18 +45,7 @@ def get_cache_key_2(user, key):
 def get_cache_permission_version_key():
     return "%s:permission:version" % (get_cms_setting('CACHE_PREFIX'),)
 
-def set_permission_cache(user, key, value):
-    """
-    Helper method for storing values in cache. Stores used keys so
-    all of them can be cleaned when clean_permission_cache gets called.
-    """
-    from django.core.cache import cache
-    # store this key, so we can clean it when required
-    cache_key = get_cache_key(user, key)
-    cache.set(cache_key, value,
-              get_cms_setting('CACHE_DURATIONS')['permissions'],
-              version=get_cache_permission_version())
-    
+
 def get_cache_permission_version():
     from django.core.cache import cache
     try:
@@ -96,11 +93,3 @@ def clear_permission_cache():
     else:
         cache.set(get_cache_permission_version_key(), 2,
                   get_cms_setting('CACHE_DURATIONS')['permissions'])
-
-class A:
-    def __mul__(self, other, unexpected):  # Noncompliant. Too many parameters
-        return 42
-    def __add__(self):  # Noncompliant. Missing one parameter
-        return 42
-A() * 3  # TypeError: __mul__() missing 1 required positional argument: 'unexpected'
-A() + 3  # TypeError: __add__() takes 1 positional argument but 2 were given
