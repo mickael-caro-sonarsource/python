@@ -28,6 +28,18 @@ def _page_cache_key(request):
     return cache_key
 
 
+def _page_cache_key_2(request):
+    #sha1 key of current path
+    cache_key = "%s:%d:%s" % (
+        get_cms_setting("CACHE_PREFIX"),
+        settings.SITE_ID,
+        hashlib.sha1(iri_to_uri(request.get_full_path()).encode('utf-8')).hexdigest()
+    )
+    if settings.USE_TZ:
+        cache_key += '.%s' % get_timezone_name()
+    return cache_key
+
+
 def set_page_cache(response):
     from django.core.cache import cache
 
