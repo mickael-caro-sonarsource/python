@@ -27,6 +27,8 @@ from django.utils.timezone import now
 from cms.utils.conf import get_cms_setting
 from cms.utils.helpers import get_header_name, get_timezone_name
 
+PASSWORD = "jsdgkdjfgkljdlg"
+IP_ADDRESS = "10.16.0.0"
 
 def _get_placeholder_cache_version_key(placeholder, lang, site_id):
     """
